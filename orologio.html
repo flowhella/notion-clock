@@ -4,28 +4,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Orologio Digitale Notion</title>
+    <!-- Link per il font "Montserrat" da Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200&display=swap" rel="stylesheet">
     <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
     <style>
-        /* Stili per l'elemento body, impostano lo sfondo trasparente e centrano il contenuto */
+        /* Stili per l'elemento body */
         body {
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh; /* Altezza piena del viewport */
             margin: 0;
-            background-color: transparent; /* Sfondo trasparente per integrarsi con Notion */
-            font-family: 'Inter', sans-serif; /* Usa il font Inter */
+            /* Inseriamo l'immagine di sfondo */
+            background-image: url('https://i.pinimg.com/originals/f8/c9/3d/f8c93de8f0f745513c5dfce1401a166f.jpg'); /* SOSTITUISCI QUESTO URL CON LA TUA IMMAGINE DIRETTA! */
+            background-size: cover; /* L'immagine coprirà l'intera area */
+            background-position: center; /* Centra l'immagine di sfondo */
+            background-repeat: no-repeat; /* Evita la ripetizione dell'immagine */
+            font-family: 'Montserrat', monospace; /* Cambiato il font a 'Montserrat' */
             color: #333; /* Colore del testo predefinito */
             overflow: hidden; /* Evita scrollbar non necessarie */
             border-radius: 0.5rem; /* Bordi arrotondati */
         }
-        /* Stili per l'orologio, lo rendono grande e in grassetto */
+        /* Stili per l'orologio */
         .clock-display {
             font-size: 4em; /* Dimensione del font grande */
             font-weight: bold;
             text-align: center;
-            padding: 1rem;
-            background-color: rgba(255, 255, 255, 0.8); /* Leggero sfondo per visibilità */
+            /* Modifica qui per allungare il box (aumenta il padding orizzontale) */
+            padding: 1rem 3rem; /* padding: verticale orizzontale */
+            /* Modifica qui per rendere più trasparente (riduci il valore .85) */
+            background-color: rgba(255, 255, 255, 0.7); /* Sfondo più trasparente */
             border-radius: 1rem; /* Bordi più arrotondati */
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Ombra leggera */
             display: flex;
@@ -34,19 +42,20 @@
             /* Rende l'elemento responsive */
             max-width: 90%;
             height: auto;
+            color: #333; /* Assicurati che il colore del testo sia leggibile */
         }
 
         /* Responsive adjustments for smaller screens */
         @media (max-width: 768px) {
             .clock-display {
                 font-size: 2.5em; /* Riduci la dimensione del font sui dispositivi più piccoli */
-                padding: 0.8rem;
+                padding: 0.8rem 2rem; /* Adatta il padding per schermi più piccoli */
             }
         }
         @media (max-width: 480px) {
             .clock-display {
                 font-size: 1.8em; /* Riduci ulteriormente per i telefoni */
-                padding: 0.5rem;
+                padding: 0.5rem 1.5rem; /* Adatta il padding per schermi molto piccoli */
             }
         }
     </style>
@@ -61,12 +70,12 @@
             const now = new Date(); // Ottiene la data e l'ora attuali
             let hours = String(now.getHours()).padStart(2, '0'); // Ore (formato 2 cifre)
             let minutes = String(now.getMinutes()).padStart(2, '0'); // Minuti (formato 2 cifre)
-            let seconds = String(now.getSeconds()).padStart(2, '0'); // Secondi (formato 2 cifre)
+            // La variabile 'seconds' è stata rimossa, non viene più utilizzata
 
             // Ottiene il riferimento all'elemento HTML dove mostrare l'orologio
             const clockElement = document.getElementById('clockContainer');
-            // Aggiorna il testo dell'elemento con l'ora formattata
-            clockElement.textContent = `${hours}:${minutes}:${seconds}`;
+            // Aggiorna il testo dell'elemento con l'ora e i minuti formattati
+            clockElement.textContent = `${hours}:${minutes}`; // Modificato per non mostrare i secondi
         }
 
         // Chiamata iniziale per visualizzare l'orologio subito al caricamento della pagina
